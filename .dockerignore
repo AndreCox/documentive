@@ -1,0 +1,6 @@
+*.md
+db/
+.git
+.github
+.vscode
+.gitignore
