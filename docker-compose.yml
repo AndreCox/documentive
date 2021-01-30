@@ -23,3 +23,10 @@ services:
       - "mongo"
     depends_on:
       -  "mongo"
+
+  documentive:
+    image: documentive
+    restart: always
+    depends_on:
+      - "mongo"
+  

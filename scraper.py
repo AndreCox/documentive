@@ -9,7 +9,7 @@ from threading import Event
 
 DATABASE_NAME = "db"
 DATABASE_PORT = 27017
-DATABASE_HOST = "mongodb://localhost/"
+DATABASE_HOST = "mongodb://mongo/" #should be localhost if running localy if running in docker it should be mongo
 
 DATABASE_USERNAME = "root"
 DATABASE_PASSWORD = "example"
@@ -38,7 +38,7 @@ db_collection = db_archive["newsites"]
 ############### Scrape Website #######################################
 
 async def capture(website):
-        browser = await launch()
+        browser = await launch(options={'args': ['--no-sandbox']})
         page = await browser.newPage() #Create a new browser page
         await page.goto(website)
         element = await page.querySelector('h2')
@@ -75,13 +75,14 @@ def data_upload():
             break
 
 def main():
-    try:
-        data_upload()
-        print("\n")
-        time.sleep(POLL_INTERVAL)
-    except KeyboardInterrupt:
-        print("[+] Exiting!")
-        exit()
+    while(True):
+        try:
+            data_upload()
+            print("\n")
+            time.sleep(POLL_INTERVAL)
+        except KeyboardInterrupt:
+            print("[+] Exiting!")
+            exit()
 
 if __name__ == "__main__":
     main()
