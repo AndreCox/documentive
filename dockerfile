@@ -2,5 +2,5 @@ FROM ubuntu:18.04
 
 COPY . /app
 
-CMD python /app/app.py
+CMD python /app/scraper.py
 
