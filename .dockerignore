@@ -1,6 +1,7 @@
 *.md
-db/
+docker-compose.yml
 .git
 .github
 .vscode
 .gitignore
+dockerfile

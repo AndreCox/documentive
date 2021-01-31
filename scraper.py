@@ -9,7 +9,7 @@ from threading import Event
 
 DATABASE_NAME = "db"
 DATABASE_PORT = 27017
-DATABASE_HOST = "mongodb://localhost/" #should be localhost if running localy if running in docker it should be mongo
+DATABASE_HOST = "mongodb://mongot/" #should be localhost if running localy if running in docker it should be mongo
 
 DATABASE_USERNAME = "root"
 DATABASE_PASSWORD = "example"
@@ -66,6 +66,7 @@ def data_upload():
         headline = asyncio.get_event_loop().run_until_complete(capture(WEBSITES[x]))
         site = WEBSITES[x].replace("https://","")
         site = site.replace(".com", "")
+        site = site.replace(".ca", "")
         site = site.upper()
 
         format_data = {"Site": site, "Headline": headline, "Date": datetime.now()}
