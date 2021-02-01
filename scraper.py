@@ -1,22 +1,24 @@
+
 import asyncio  #import asynchronous execution
 import time
 import pymongo #allows connection to database
+import config
 from pyppeteer import launch #used for website scraping
-from datetime import datetime
+from datetime import datetime #used for timestamps
 from threading import Event
 
-############# ENVIRONMENT VARIABLES ###########################################################
+############# ENVIRONMENT VARIABLES (Set in config.py file) ####################################
 
-DATABASE_NAME = "db"
-DATABASE_PORT = 27017
-DATABASE_HOST = "mongodb://mongot/" #should be localhost if running localy if running in docker it should be mongo
+DATABASE_NAME = config.DATABASE_NAME
+DATABASE_PORT = config.DATABASE_PORT
+DATABASE_HOST = config.DATABASE_HOST
 
-DATABASE_USERNAME = "root"
-DATABASE_PASSWORD = "example"
+DATABASE_USERNAME = config.DATABASE_USERNAME
+DATABASE_PASSWORD = config.DATABASE_PASSWORD
 
-WEBSITES = ['https://cnn.com', 'https://foxnews.com']
+WEBSITES = config.WEBSITES
 
-POLL_INTERVAL = 5 * 60
+POLL_INTERVAL = config.POLL_INTERVAL
 
 ###############################################################################################
 
@@ -85,7 +87,7 @@ def main():
             print("\n")
             time.sleep(POLL_INTERVAL)
         except KeyboardInterrupt:
-            print("[+] Exiting!")
+            print("[+] Scraper Exiting!")
             exit()
 
 if __name__ == "__main__":

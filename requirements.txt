@@ -1,2 +1,4 @@
 pymongo==3.11.2
 pyppeteer==0.2.5
+Flask==1.1.2
+isodate == 0.6.0
