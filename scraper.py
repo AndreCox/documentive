@@ -22,21 +22,6 @@ POLL_INTERVAL = config.POLL_INTERVAL
 
 ###############################################################################################
 
-############# Try to connect to database ######################################################
-
-try:
-    myclient = pymongo.MongoClient( DATABASE_HOST, DATABASE_PORT, username = DATABASE_USERNAME, password = DATABASE_PASSWORD )
-    print("[+] Database connected!")
-
-except Exception as e:
-    print("[+] Database connection error!")
-    raise e
-
-db_archive = myclient["archive"]
-db_collection = db_archive["newsites"]
-
-################################################################################################
-
 ############### Scrape Website #################################################################
 
 async def capture(website):
@@ -80,7 +65,10 @@ def data_upload():
 
 #############################################################################################
 
-def main():
+def main(database):
+    global db_collection
+    db_collection = database
+
     while(True):
         try:
             data_upload()
@@ -89,9 +77,6 @@ def main():
         except KeyboardInterrupt:
             print("[+] Scraper Exiting!")
             exit()
-
-if __name__ == "__main__":
-    main()
 
 
 
