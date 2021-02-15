@@ -6,18 +6,18 @@ on:
       - master
 
 jobs:
-  install-and-test:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install npm dependencies
-        run: |
-          ls
-          cd apps/DocumentiveMobile
-          npm install
+#  install-and-test:
+#    runs-on: windows-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#      - name: Install npm dependencies
+#        run: |
+#          ls
+#          cd apps/DocumentiveMobile
+#          npm install
   build-android:
-    needs: install-and-test
-    runs-on: ubuntu-latest
+#    needs: install-and-test
+    runs-on: windows-latest
     steps: 
       - uses: actions/checkout@v2
       - name: Install npm dependencies
@@ -28,7 +28,7 @@ jobs:
         run: |
           ls
           cd apps/DocumentiveMobile
-          yarn add expo
+          npm install --global expo-cli
           expo build:android
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
