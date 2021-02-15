@@ -26,6 +26,7 @@ jobs:
       - name: Build Android Release
         run: |
           ls
+          cd apps/DocumentiveMobile
           sudo npm i -g expo-cli
           expo build:android
       - name: Upload Artifact
