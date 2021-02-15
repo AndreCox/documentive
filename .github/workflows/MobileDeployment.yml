@@ -27,7 +27,7 @@ jobs:
         run: |
           ls
           cd apps/DocumentiveMobile
-          sudo npm i -g expo-cli
+          yarn add expo
           expo build:android
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
