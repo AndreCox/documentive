@@ -25,6 +25,7 @@ jobs:
           npm install
       - name: Build Android Release
         run: |
+          ls
           sudo npm i -g expo-cli
           expo build:android
       - name: Upload Artifact
