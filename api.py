@@ -1,8 +1,8 @@
-import flask
-import pymongo
-import config
-import isodate as iso
-import json
+import flask #Used for webserver
+import pymongo #Used to retreave data
+import config #config file defined in config.py
+import isodate as iso #used to convert the data which is incompatible with json
+import json #for outputing database as json
 
 from bson import ObjectId
 from flask.json import JSONEncoder
@@ -15,7 +15,7 @@ from datetime import date
 ############# Set database collection in main ######################################################
 def main(database):
 
-    global db_collection 
+    global db_collection #NOTE not sure if global is needed
     db_collection = database
     
 

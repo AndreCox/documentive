@@ -1,3 +1,12 @@
+#########################################################################################
+# This script launches both api.py for the webserver and scraper.py for website data
+# retreval. Both are connected via a Mongo Database.
+# 
+# 
+#
+#
+#########################################################################################
+
 import pymongo
 import config
 
@@ -24,19 +33,19 @@ POLL_INTERVAL = config.POLL_INTERVAL
 
     
 
-try:
-    myclient = pymongo.MongoClient( DATABASE_HOST, DATABASE_PORT, username = DATABASE_USERNAME, password = DATABASE_PASSWORD )
+try:    #Check to see if the database is actually running, NOTE this can somtimes fail and pass true
+    myclient = pymongo.MongoClient( DATABASE_HOST, DATABASE_PORT, username = DATABASE_USERNAME, password = DATABASE_PASSWORD ) 
     db_archive = myclient["archive"]
     global db_collection
     db_collection = db_archive["newsites"]
     print("[+] Database connected!")
-except Exception as e:
+except Exception as e: 
     print("[+] Database connection error!")
     raise e
 
-def api():
+def api():  
     print("[+] Starting Scraper!")
-    scraper_main(db_collection)
+    scraper_main(db_collection)  
     #call(["python", "scraper.py"])
 
 def scraper():
@@ -46,7 +55,7 @@ def scraper():
 
 def main():
     while(True):
-        try:
+        try:   #Creates two multithreaded processes
             scraper_process = Process(target=scraper)
             scraper_process.start()
             api_process = Process(target=api)

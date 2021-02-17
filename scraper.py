@@ -1,3 +1,4 @@
+#NOTE This code is hell and I don't want to comment it
 
 import asyncio  #import asynchronous execution
 import time
@@ -5,7 +6,7 @@ import pymongo #allows connection to database
 import config
 from pyppeteer import launch #used for website scraping
 from datetime import datetime #used for timestamps
-from threading import Event
+from threading import Event #multithreading support for api and scraper
 
 ############# ENVIRONMENT VARIABLES (Set in config.py file) ####################################
 
